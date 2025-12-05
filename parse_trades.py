@@ -27,8 +27,8 @@ def parse_trades(html):
             continue
         
         lots.append({
-            'name': link.get_text(strip=True),
-            'price': parse_price(cells[5].get_text(strip=True)),
+            'name': link.text.strip(),
+            'price': parse_price(cells[5].text.strip()),
             'link': 'https://torgi.org' + link.get('href', '')
         })
     

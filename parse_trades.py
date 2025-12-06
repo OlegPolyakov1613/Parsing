@@ -6,6 +6,8 @@ def parse_price(price_str):
     if not price_str:
         return 0
     clean = ''.join(c for c in price_str if c.isdigit() or c == '.')
+        if clean.endswith('.'):
+                    clean = clean[:-1]
     return float(clean) if clean else 0
 
 

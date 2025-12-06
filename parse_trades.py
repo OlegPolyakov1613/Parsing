@@ -39,7 +39,7 @@ def parse_trades(html):
 
 
 def main():
-    url = 'https://torgi.org/index.php?class=Auction&action=list&mod=Open&AuctionType=All'
+    url = 'https://torgi.org/index.php?class=Auction&action=List&mod=Open&AuctionType=All'
     
     print("Скачивание...")
     try:

@@ -43,11 +43,6 @@ def main():
     try:
         response = requests.get(url)
         response.encoding = 'utf-8'
-        
-        with open('torgi_page.html', 'w', encoding='utf-8') as f:
-            f.write(response.text)
-        print("Страница сохранена в 'torgi_page.html'")
-        
     except Exception as e:
         print(f"Ошибка: {e}")
         return

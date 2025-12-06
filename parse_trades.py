@@ -40,8 +40,6 @@ def parse_trades(html):
 
 def main():
     url = 'https://torgi.org/index.php?class=Auction&action=List&mod=Open&AuctionType=All'
-    
-    print("Скачивание...")
     try:
         response = requests.get(url)
         response.encoding = 'utf-8'

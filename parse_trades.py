@@ -6,14 +6,15 @@ def parse_price(price_str):
     if not price_str:
         return 0
     clean = ''.join(c for c in price_str if c.isdigit() or c == '.')
-        if clean.endswith('.'):
-                    clean = clean[:-1]
+    if clean.endswith('.'):
+        clean = clean[:-1]
     return float(clean) if clean else 0
 
 
 def parse_trades(html):
     soup = BeautifulSoup(html, 'html.parser')
     lots = []
+    
     table = soup.find('table', {'id': 'auction-table'})
     
     if not table:
@@ -38,15 +39,17 @@ def parse_trades(html):
 
 
 def main():
-    url = 'https://torgi.org/index.php?class=Auction&action=List&mod=Open&AuctionType=All'
+    url = 'https://torgi.org/index.php?class=Auction&action=list&mod=Open&AuctionType=All'
     
     print("Скачивание...")
     try:
         response = requests.get(url)
         response.encoding = 'utf-8'
+        
         with open('torgi_page.html', 'w', encoding='utf-8') as f:
             f.write(response.text)
-        print("Сохранено в torgi_page.html")
+        print("Страница сохранена в 'torgi_page.html'")
+        
     except Exception as e:
         print(f"Ошибка: {e}")
         return
@@ -62,11 +65,12 @@ def main():
         print(f"\n{'='*80}")
         for i, lot in enumerate(filtered, 1):
             print(f"{i}. {lot['name'][:70]}")
-            print(f"   {lot['price']:,.0f} руб. | {lot['link']}")
+            print(f"   {lot['price']:.0f} руб. | {lot['link']}")
             print(f"{'-'*80}")
         
         if not filtered:
             print("Нет лотов в диапазоне")
+    
     except:
         print("Ошибка ввода")
 
